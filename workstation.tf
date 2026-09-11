@@ -38,10 +38,14 @@ resource "aws_instance" "workstation" {
 
 
 
+data "aws_iam_role" "bastion_terraform_admin" {
+  name = "BastionTerraformAdmin"
+}
+
 resource "aws_iam_instance_profile" "workstation" {
   name = "workstation"
 
-  role = aws_iam_role.bastion_terraform_admin.name
+  role = data.aws_iam_role.bastion_terraform_admin.name
 }
 
 
