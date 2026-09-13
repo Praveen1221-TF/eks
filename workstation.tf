@@ -44,6 +44,11 @@ resource "aws_iam_instance_profile" "workstation" {
   role = aws_iam_role.bastion_terraform_admin.name
 }
 
+resource "aws_iam_role_policy_attachment" "bastion_admin" {
+  role       = aws_iam_role.bastion.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
 
 resource "aws_security_group" "workstation" {
   name = "workstation"
